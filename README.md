@@ -16,9 +16,9 @@ These are the guides I used during the process:
 
 ## Notes
 
-I install Arch Linux on a notebook so I use wireless connection, so if you (or I) use wired connection, these steps may differ
+I am installing Arch Linux on a notebook so I use a wireless connection, so if you (or I) use wired connection, these steps may differ.
 
-## Pre-insall stuff
+## Pre-install stuff
 
 First of all (after making a bootable USB drive with Arch Linux on it and boot up Arch Linux installer) set your keyboard with
 
@@ -32,7 +32,7 @@ then set up your wireless connection using WPA supplicant. List your interfaces 
 ip link
 ```
 
-and if it list more than one option, you should wildly guess which one to use; I got lo, eno1, wwp0s29u1u6i6 and wlan0 and (miraculously) wlan0 is the one I will use. Write 
+and if it lists more than one option, you should take a wild guess which one to use; I got lo, eno1, wwp0s29u1u6i6 and wlan0 and (miraculously) wlan0 is the one I will use. Write 
 
 ```shell
 ctrl_interface=/run/wpa_supplicant
@@ -71,7 +71,7 @@ set_network 0 psk "passphrase"
 enable_network 0
 ``` 
 
-and after doing so, you should save your setting and leave wpa_cli with
+and after doing so, you should save your settings and leave wpa_cli with
 
 ```shell
 save_config
@@ -97,7 +97,7 @@ timedatectl set-ntp true
 ``` 
 but to be honest, I don't know what it actually does, but it was in the install guide and I'm not taking any chances, so you should run it too.
 
-After all this, fuck up your current file system. Get all the information you with 
+After all this, fuck up your current file system. Get all the information you need with 
 
 ```shell
 fdisk -l
@@ -174,32 +174,32 @@ Set time with
 hwclock --systohc
 ```
 
-Generate locale
+generate locale
 
 ```shell
 locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 ```
-And set keymap as well 
+and set keymap as well 
 
 ```shell
 echo "127.0.0.1 localhost" > /etc/hostname
 ```
 
-Set root password
+set root password
 
 ```shell
 passwd
 ```
 
-Create a user (I think it is needed for a desktop environment) and password to this as well
+create a user (I think it is needed for a desktop environment) and password to this as well
 
 ```shell
 useradd -m -g users username
 passwd username
 ```
 
-Modify files to have the encryption as a part of the system startup
+modify files to have the encryption as a part of the system startup
 
 ```shell
 nano /etc/defaults/grub
@@ -217,7 +217,7 @@ and open /etc/mkinitcpio.conf
 nano /etc/mkinitcpio.conf
 ```
 
-and add the encryptoin to the hook like
+and add the encryption to the hook like
 
 ```shell
 ... block encrypt filesystem ...
@@ -256,7 +256,7 @@ And now you have Arch Linux.
 
 ## After-install stuff
 
-So, if everything is according to plan, you reboot your computer and boot Arch Linux from your hard drive (or solid state drive) and you are greeted with a prompt to encrypt your file system. After you've done that, you are expected to log in. I recommend using the root, because you have to install a lot of stuff so you don't need to write sudo all the time.
+So, if everything is according to plan, you reboot your computer and boot Arch Linux from your hard drive (or solid state drive) and you are greeted with a prompt to encrypt your file system. After you've done that, you are expected to log in. I recommend using the root, because you have to install a lot of stuff so you don't need to write "sudo" all the time.
 
 After logging in, run 
 
@@ -264,7 +264,7 @@ After logging in, run
 cd ..
 ``` 
 
-so if you forget to use / before etc it does not give an error.
+so if you forget to use "/" before "etc" it does not give an error.
 
 Connect to your wireless network using
 
@@ -297,17 +297,17 @@ systemctl start sddm
 
 (If you have to, you can force stop SDDM with Ctrl+Alt+F2.)
 
-You will be prompted to login with the user you previously created and after that you will be greeted with the vanilla KDE plasma:
+You will be prompted to login with the user account you previously created and after that you will be greeted with the vanilla KDE plasma:
 
 ![Vanilla KDE Plasma](./vanilla.png)
 
-At this point probably your user is not a sudoer, so you should modify /etc/sudoers. Open up Konsole and run
+At this point probably your user account is not a sudoer, so you should modify "/etc/sudoers". Open up Konsole and run
 
 ```shell
 su
 ```
 
-and login as root, and
+login as root, and run
 
 ```shell
 nano /etc/sudoers
@@ -320,9 +320,9 @@ root ALL=(ALL) ALL
 username ALL=(ALL) ALL
 ``` 
 
-If NetworkManager is working, connect to your wifi and install the applications you want to use. (I did managed to fuck up this as well so after enabled SDDM I did not have any option to connect to my wifi, so I force stopped it and installed NetworkManager at this point).
+If NetworkManager is working, connect to your wifi and install the applications you want to use. (I did manage to fuck up this as well so after having SDDM enabled I did not have any options to connect to my wifi, so I force stopped it and installed NetworkManager at this point).
 
-If you use touchpad like a noob like me, you shoud do something about it. I followed [this guide](https://wiki.archlinux.org/index.php/Touchpad_Synaptics#Frequently_used_options) to create a file under /etc/X11/xorg.conf.d/70-synaptics.conf and according to a [this reddit post](https://www.reddit.com/r/archlinux/comments/4qd5f7/taptoclick_no_longer_enabled_in_sddm/) I panicked and copied it under /etc/X11/xorg.conf.d/50-synaptics.conf and I also installed xf86-input-synaptics and after a restart it worked, so I don't know which one should you use.
+If you use touchpad like a noob like me, you should do something about it. I followed [this guide](https://wiki.archlinux.org/index.php/Touchpad_Synaptics#Frequently_used_options) to create a file under /etc/X11/xorg.conf.d/70-synaptics.conf and according to [this reddit post](https://www.reddit.com/r/archlinux/comments/4qd5f7/taptoclick_no_longer_enabled_in_sddm/) I panicked and copied it under /etc/X11/xorg.conf.d/50-synaptics.conf and I also installed xf86-input-synaptics and after a restart it worked, so I don't know which one should you use.
 
 The list of apps I installed:
 
@@ -336,7 +336,7 @@ The list of apps I installed:
 
 You can [enable multilib this way](https://wiki.archlinux.org/index.php/Official_repositories#multilib)
 
-And this is how it looks after some rice:
+And this is how it looks like after some rice:
 
 ![Rice KDE Plasma](./rice.png)
 
