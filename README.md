@@ -341,6 +341,9 @@ And this is how it looks after some rice:
 ![Rice KDE Plasma](./rice.png)
 
 Theme: Carl
+
 Icons: OieIcons
+
 Cursor: Bibata Oil
+
 Dock: Latte
