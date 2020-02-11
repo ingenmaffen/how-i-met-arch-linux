@@ -145,7 +145,7 @@ and with all that out of the way, install Arch Linux.
 Now comes the installation. The packages you install may vary so install these to your likings, but if you want to follow me, run
 
 ```shell
-pacstrap -i /mnt base linux linux-firmware nano mkinitcpio dhcpcd wpa_supplicant
+pacstrap -i /mnt base base-devel linux linux-firmware nano mkinitcpio dhcpcd wpa_supplicant
 ``` 
 
 and if the installation was successful, generate an fstab (I don't know what it is but every other guide had it, so here it is)
