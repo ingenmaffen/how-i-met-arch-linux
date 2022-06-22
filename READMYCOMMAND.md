@@ -61,7 +61,8 @@ passwd username
 ```
 
 ```shell
-nano /etc/defaults/grub
+pacman -S grub-bios os-prober
+nano /etc/default/grub
 ```
 
 ```shell
@@ -77,7 +78,7 @@ nano /etc/mkinitcpio.conf
 ```
 
 ```shell
-mkinitpcio -p linux
+mkinitcpio -p linux
 grub-install --recheck /dev/sda
 grub-mkconfig --output /boot/grub/grub.cfg
 exit
@@ -93,6 +94,7 @@ systemctl reboot
 ```shell
 ip link
 wpa_supplicant -B -i wlp2s0 -c<(wpa_passphrase ssid password)
+dhcpcd
 pacman -S xorg xorg-server plasma sddm konsole
 pacman -S networkmanager network-manager-applet
 systemctl enable NetworkManager

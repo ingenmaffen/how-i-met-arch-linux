@@ -180,7 +180,7 @@ generate locale
 locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 ```
-and set keymap as well 
+and set the hostname as well
 
 ```shell
 echo "127.0.0.1 localhost" > /etc/hostname
@@ -199,10 +199,16 @@ useradd -m -g users username
 passwd username
 ```
 
-modify files to have the encryption as a part of the system startup
+Then install the bootloader
 
 ```shell
-nano /etc/defaults/grub
+pacman -S grub-bios os-prober
+```
+
+and modify files to have the encryption as a part of the system startup
+
+```shell
+nano /etc/default/grub
 ```
 
 and modify the line GRUB_CMDLINE_LINUX to
@@ -228,7 +234,7 @@ where you should add "encrypt" between "block" and "filesystem".
 Create new initramfs with
 
 ```shell
-mkinitpcio -p linux
+mkinitcpio -p linux
 ```
 
 and install grub
@@ -254,9 +260,9 @@ systemctl reboot
 ```
 And now you have Arch Linux.
 
-## After-install stuff
+## Post-install stuff
 
-So, if everything is according to plan, you reboot your computer and boot Arch Linux from your hard drive (or solid state drive) and you are greeted with a prompt to encrypt your file system. After you've done that, you are expected to log in. I recommend using the root, because you have to install a lot of stuff so you don't need to write "sudo" all the time.
+So, if everything is going according to plan, you reboot your computer and boot Arch Linux from your hard drive (or solid state drive) and you are greeted with a prompt to encrypt your file system. After you've done that, you are expected to log in. I recommend using the root, because you have to install a lot of stuff so you don't need to write "sudo" all the time.
 
 After logging in, run 
 
@@ -271,6 +277,7 @@ Connect to your wireless network using
 ```shell
 ip link
 wpa_supplicant -B -i wlp2s0 -c<(wpa_passphrase ssid password)
+dhcpcd
 ``` 
 
 and install a desktop environment. I use KDE Plasma with SDDM so if you want to do the same, run
@@ -279,7 +286,7 @@ and install a desktop environment. I use KDE Plasma with SDDM so if you want to 
 pacman -S xorg xorg-server plasma sddm konsole
 ``` 
 
-even tough I'm not sure if I need xorg and xorg-server.
+even tough I'm not sure if I need xorg and xorg-server. (After numerous install, I can confirm that they are not necessary.)
 
 After this, install NetworkManager, by running
 
